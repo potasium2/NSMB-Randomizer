@@ -3,7 +3,6 @@ import random
 import struct
 
 import ndspy.rom
-import ndspy.codeCompression
 
 from PySide6 import QtCore, QtWidgets, QtGui
 from level import LevelRandomizer
@@ -29,11 +28,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.InitUI()
         
     def ImportRom(self, repeat = True):
-        QtWidgets.QMessageBox.information(
-            self,
-            self.tr("Import"),
-            self.tr("Import your North American ROM of New Super Mario Bros. DS"),
-        )
+        if not repeat:
+            QtWidgets.QMessageBox.information(
+                self,
+                self.tr("Import"),
+                self.tr("Import your North American ROM of New Super Mario Bros. DS"),
+            )
         
         while True:
             path, selectedFilter = QtWidgets.QFileDialog.getOpenFileName(
